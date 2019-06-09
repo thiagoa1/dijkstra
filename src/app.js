@@ -1,4 +1,5 @@
 import Graph from "./components/graph.map/graph.js"
+import { shortestPath } from "./components/graph.map/operations.js";
 
 let graph = new Graph(false)
 
@@ -12,5 +13,7 @@ let j = graph.addEdge(v, w, 'f')
 let g = graph.addEdge(u, w, 'g')
 let i = graph.addEdge(w, z, 'i')
 
-console.log(graph.vertices())
-console.log(graph.edges())
+//console.log(graph.vertices())
+//console.log(graph.edges())
+
+console.log(shortestPath(graph, v))
