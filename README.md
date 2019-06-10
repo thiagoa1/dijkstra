@@ -1,4 +1,4 @@
-# dijkstra
+# Dijkstra
 Implementação do algorítmo do caminho mais curto de Dijkstra em Javascript.  
 
 Necessário node/npm instalado para dependências e transpilação.  
