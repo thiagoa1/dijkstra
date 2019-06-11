@@ -16,17 +16,18 @@ export const shortestPath = (graph, initialVertex) => {
 
     while (currentVertex !== null) {
         let currentEstimative = estimativeMap.get(currentVertex)
-        // Recupera as arestas e transforma cada uma para o vértice oposto do vértice atual
-        let adjacentVertices = graph.incidentEdges(currentVertex).map(edge => edge.opposite(currentVertex))
+        // Recupera as arestas incidentes
+        let incidentEdges = graph.incidentEdges(currentVertex)
 
         // Relaxamento dos vértices opostos
-        adjacentVertices.forEach(oppositeVertex => {
+        incidentEdges.forEach(incidentEdge => {
+            let oppositeVertex = incidentEdge.opposite(currentVertex)
             // Só faz o relaxamento se o vértice não estiver fechado
             if (!closed.includes(oppositeVertex)) {
                 let estimative = estimativeMap.get(oppositeVertex)
-                if (estimative.cost > currentEstimative.cost + 1) {
+                if (estimative.cost > currentEstimative.cost + incidentEdge.element()) {
                     estimativeMap.get(oppositeVertex).preceding = currentVertex
-                    estimativeMap.get(oppositeVertex).cost = currentEstimative.cost + 1
+                    estimativeMap.get(oppositeVertex).cost = currentEstimative.cost + incidentEdge.element()
                 }
             }
         })
